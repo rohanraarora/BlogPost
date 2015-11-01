@@ -1,11 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @articles = current_user.articles.all
+    @articles = Article.all
+    @current_user = current_user
   end
 
   def show
     @article = Article.find(params[:id])
+    @current_user = current_user
   end
 
   def new

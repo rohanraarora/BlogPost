@@ -1,26 +1,21 @@
-<h1>Listing Articles</h1>
+<h1>Welcome <%= @user.name %></h1>
 <%= link_to 'New article', new_article_path %>
-<%= link_to 'Profile', profile_path %>
 <table>
   <tr>
     <th>Title</th>
     <th>Content</th>
-    <th>By</th>
     <th colspan="3"></th>
   </tr>
 
-  <% @articles.each do |article| %>
+  <% @user.articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
       <td><%= article.content %></td>
-      <td><%= article.user.name %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
-      <% if article.user == @current_user %>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article_path(article),
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article_path(article),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
     </tr>
   <% end %>
   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>

@@ -8,11 +8,16 @@
   <%= @article.content %>
 </p>
 
+<p>
+  <strong>By:</strong>
+  <%= @article.user.name %>
+</p>
+
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
   <p>
     <strong>Commenter:</strong>
-    <%= comment.user %>
+    <%= comment.user.name %>
   </p>
 
   <p>
@@ -32,5 +37,7 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<% if @article.user == @current_user %>
+<%= link_to 'Edit', edit_article_path(@article) %>
+<% end %>
 <%= link_to 'Back', articles_path %>
